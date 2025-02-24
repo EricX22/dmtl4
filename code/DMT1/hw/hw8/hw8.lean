@@ -145,6 +145,7 @@ Lean's ⟨_, _⟩ notation for the default *mk* constructor; and
 finally all on one line, as an explicit function term.
 @@@ -/
 
+
 def andCommutative : P × Q → Q × P
 | Prod.mk p q  => Prod.mk q p
 
@@ -272,6 +273,7 @@ the the disjunction.
 
 example : P × (Q ⊕ R) → (P × Q ⊕ P × R)
 | ⟨ p, Sum.inl q ⟩ => Sum.inl ⟨ p, q ⟩
+| ⟨ p, Sum.inr r ⟩ => Sum.inr ⟨ p, r ⟩
 -- you write the second missing case
 
 /-@@@
@@ -297,6 +299,46 @@ into our current embedding of predicate logic in Lean
 
 -- Your answers here
 
+/- P ∧ (Q ∧ R) → (P ∧ Q) ∧ R   -- and is associative -/
+example : P × (Q × R) → (P × Q) × R
+| ⟨ p, ⟨q, r⟩ ⟩ => ⟨ ⟨p, q⟩, r⟩
+
+/- P ∨ (Q ∨ R) → (P ∨ Q) ∨ R   -- or is associative -/
+example : P ⊕ (Q ⊕ R) → (P ⊕ Q) ⊕ R
+| Sum.inl p => Sum.inl (Sum.inl p)
+| Sum.inr (Sum.inl q) => Sum.inl (Sum.inr q)
+| Sum.inr (Sum.inr r) => Sum.inr r
+
+/- ¬(P ∧ Q) → ¬P ∨ ¬Q -/
+/- There is no possible proof given what we've learned in this assignment.
+So far, all we can infer from ¬(P ∧ Q) is that both P and Q cannot be true
+at the same time. Proving the right side means we somehow need to return that
+P -> empty or Q -> empty, but we have no way to select which
+-/
+
+
+/- ¬(P ∨ Q) → ¬P ∧ ¬Q
+This is different from the above since we know that both P and Q are false,
+however, something like the below proof doesn't work because when we interact
+with an expression like ¬(P ⊕ Q), this is expected to be of type Type 1 rather
+than the standard Prop: Type
+
+example : ¬(P ⊕ Q) → (¬P × ¬Q) :=
+λ h =>
+  let np : ~P := λ p => h (Sum.inl p)
+  let nq : ~Q := λ q => h (Sum.inr q)
+  ⟨np, nq⟩
+-/
+
+/- ¬(P ∧ N) -/
+example : ~(P × N) :=
+λ ⟨ _,n ⟩ => nomatch n
+
+/- (P ∨ N) -/
+example : P ⊕ N :=
+Sum.inl p
+
+
 
 /- @@@
 ## Extra Credit
@@ -307,4 +349,14 @@ into Lean. One that's not is negation elimination: that
 is, *¬¬P → P*. Try to prove it in the stype we've used
 here here and explain exactly where things go wrong (in
 a comment).
+
+
+example : ¬¬P → P :=
+λ h => h (λ ¬p => (something proving p))
+
+At best, we can define some function h to show that proving P is false leads
+to a contradiction. However, this does not explicitly say whether P itself
+is true. We need some way to make a proof of p itself rather than a proof against
+its negation.
+
 -/
