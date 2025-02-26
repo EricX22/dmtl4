@@ -335,11 +335,11 @@ What about in the other direction?
 @@@ -/
 
 example: (~P) ⊕ (~Q) → (~(P × Q)) :=
-fun (h : (~P) ⊕ ~Q) =>
-  fun pandq =>
+fun (h : (~P) ⊕ ~Q) pandq =>
     match h with
     | Sum.inl np => np pandq.fst
     | Sum.inr nq => nq pandq.snd
+
 
 
 /- HOMEWORK 9!
@@ -353,19 +353,28 @@ propositional logical also valid in Lean?
 
 -- ¬(P ∨ Q) -> ¬P ∧ ¬Q
 
-example : (~(P ⊕ Q)) -> (~P) × (~Q) :=
+example : (~(P ⊕ Q)) → (~P) × (~Q) :=
 fun (h : (~(P ⊕ Q))) =>
-  _
+  ⟨λ p => h (Sum.inl p), λ q => h (Sum.inr q)⟩
+
+/- representing the left side as h, on the right, our p must be false looking
+at the possible values of p that make h true, and same for q. -/
 
 example : (~P) × (~Q) → (~(P ⊕ Q)) :=
-_
+λ h porq =>
+  match porq with
+  | Sum.inl p => h.fst p
+  | Sum.inr q => h.snd q
 
 /- @@@
 In classical logic we know it's false that both P
 and ¬P are true. Is that also true in constructive
 logic? Prove it if you can.
 @@@ -/
-example : ~(P × (~P)) := _
+example : ~(P × (~P)) :=
+λ h => h.snd h.fst
+
+/- given that not P, p -> empty -/
 
 /- @@@
 What about the axiom of negation elimination? That is,
@@ -374,7 +383,7 @@ or neither?
 @@@ -/
 
 example : P → (~(~P)) :=
-λ p => fun np => _
+λ p => fun np => np p
 
 /- @@@
 Ok, so, even in constructive logic, from a proof of
@@ -382,4 +391,7 @@ P we can derive a proof of ¬¬P. How about in the other
 direction?
 -/
 example : (~(~P)) → P :=
-_
+λ p => _
+
+/- There's nothing I can do with not P -> empty that will give a proof of P,
+since (P -> empty -> empty) -> P doesn't construct anything about P itself-/
