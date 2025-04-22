@@ -1,24 +1,3 @@
-import Mathlib.Data.Rel
-import Mathlib.Data.Set.Basic
-import Mathlib.Logic.Relation
-import Mathlib.Data.Real.Basic
-
-namespace DMT1.Lectures.setsRelationsFunctions.wellFounded
-
-/- @@@
-# Well Founded Relations
-
-*UNDER CONSTRUCTION -- BROKEN -- NOTHING TO SEE HERE*
-
-<!-- toc -->
-
-## For a Value to be *Accessible* Under an Endorelation
-@@@ -/
-
-#check Acc
--- #check Acc r x
-
-/- @@@
 To understand what it means for an endorelation to be well
 founded, we need the notion of what it means for an element,
 *(x : α)* to be *accessible* under a given relation, *r*.
@@ -130,8 +109,9 @@ example : @isWellFoundedOrder Nat Nat predRel :=
       -- ∃ m ∈ s, ¬∃ n ∈ s, predRel n m
       _
 
+/- @@@
+End of technical section
+@@@ -/
 
 
--- See [TPIL4](https://leanprover.github.io/theorem_proving_in_lean4/induction_and_recursion.html#well-founded-recursion-and-induction).
-
-end DMT1.Lectures.setsRelationsFunctions.wellFounded
+/- @@@ @@@@@@@@@@@ @@@@@@@@@@@@@ @@@@@@@@@@ @@@ -/

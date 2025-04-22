@@ -52,18 +52,18 @@
   - [Dependent Type Theory](./DMT1/Lectures/L07_predicateLogic/06_dependentTypes.lean.md)
   
 - [Sets and Relations](./setTheory)
-  - [Sets as Unary Predicates](./DMT1/Lectures/L08_setsRelationsFunctions/01_sets.lean.md)
-  - [Relations as n-ary Predicates](./DMT1/Lectures/L08_setsRelationsFunctions/02_relations.lean.md)
-  - [(Polymorphic) Equality](./DMT1/Lectures/L08_setsRelationsFunctions/03_equality.lean.md)
-  - [Properties of Relations](./DMT1/Lectures/L08_setsRelationsFunctions/04_propertiesOfRelations.lean.md)
-  - [Well Founded Relations](./DMT1/Lectures/L08_setsRelationsFunctions/05_wellFounded.lean.md)
+  - [Sets](./DMT1/Lectures/L08_setsRelationsFunctions/C01_sets.lean.md)
+  - [Relations](./DMT1/Lectures/L08_setsRelationsFunctions/C02_relations.lean.md)
+  - [Equality](./DMT1/Lectures/L08_setsRelationsFunctions/C03_equality.lean.md)
+  - [Properties](./DMT1/Lectures/L08_setsRelationsFunctions/C04_propertiesOfRelations.lean.md)
 
-- [Induction](./proofByInduction.md)
-  - [Axioms](./inductionAxioms.md)
-  - [Proofs](./DMT1/Lectures/L09_induction/01_sets.lean.md)
-  - [Structural Recursion](./structuralRecursion.md)
-  - [Generative Recursion](./generativeRecursion.md)
-  - [Well-Founded Relations and Termination](./wellFoundedRelations.md)
+- [Abstract Algebra](./mathStructures)
+  - [Groups](./DMT1/Lectures/L09_classes/C01_groups.lean.md)
+  - [Actions](./DMT1/Lectures/L09_classes/C02_groupActions.lean.md)
+  - [Torsors over Groups](./DMT1/Lectures/L09_classes/C03_torsors.lean.md)
+  - [Modules and Vector Spaces](./DMT1/Lectures/L09_classes/C04_vectorSpaces.lean.md)
+  - [Affine Spaces](./DMT1/Lectures/L09_classes/C05_affineSpaces.lean.md)
+  - [n-Dimensional Spaces](./DMT1/Lectures/L09_classes/C06_finiteDimensional.lean.md)
 
 - [Assignments](){-}
 
